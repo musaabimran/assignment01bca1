@@ -1,4 +1,4 @@
-#### Sample Main for Testing
+# Sample Main for Testing
 package main
 
 import (
