@@ -14,6 +14,7 @@ import (
 type block struct {
 	transaction   string
 	nonce         int
+	number        int
 	previousHash  string
 	currentHash   string
 	previousBlock *block
@@ -30,10 +31,11 @@ func CalculateHash(stringToHash string) string {
 // The NewBlock() method will create a new block and assign it the values and return the block
 // Previous Block parameter was added so that we can keep track of the previous block
 // making a chain of blocks (link list)
-func NewBlock(transaction string, nonce int, previousBlock *block) *block {
+func NewBlock(transaction string, nonce int, blknumber int, previousBlock *block) *block {
 	b := new(block)
 	b.transaction = transaction
 	b.nonce = nonce
+	b.number = blknumber
 	if previousBlock != nil {
 		// Concatenating the transaction, nonce and previous hash to create a string for hash calculation
 		b.previousHash = previousBlock.currentHash
@@ -53,15 +55,13 @@ func NewBlock(transaction string, nonce int, previousBlock *block) *block {
 // A method to print all the blocks in a nice format showing block data such as transaction, nonce, previous hash, current block hash
 // Block parameter was added to print the blockchain from the genesis block
 func ListBlocks(b *block) {
-	blockNumber := 1
 	for b != nil {
-		fmt.Printf("Block Number: %d\n", blockNumber)
+		fmt.Printf("Block Number: %d\n", b.number)
 		fmt.Printf("Transaction: %s\n", b.transaction)
 		fmt.Printf("Nonce: %d\n", b.nonce)
 		fmt.Printf("Previous Hash: %s\n", b.previousHash)
 		fmt.Printf("Current Hash: %s\n\n", b.currentHash)
 		b = b.previousBlock
-		blockNumber++
 	}
 }
 
@@ -69,6 +69,7 @@ func ListBlocks(b *block) {
 // Block ref and transaction parameters were added to change the transaction value of that block
 func ChangeBlock(b *block, transaction string) {
 	if b != nil {
+		fmt.Printf("Changes made in Block Number: %d\n\n", b.number)
 		b.transaction = transaction
 	} else {
 		fmt.Println("Block not created!!!")
