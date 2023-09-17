@@ -2,7 +2,7 @@
 // Student ID: 20i-1794
 // Date Created: 2022-09-12
 
-package assignment01bca1
+package assignment01bca
 
 // Importing packages
 import (
