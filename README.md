@@ -12,10 +12,10 @@ import (
 func main() {
 
 	// Creating Blockchain
-	genesisBlock := assignment01bca.NewBlock("Genesis", 0, nil)
-	Block1 := assignment01bca.NewBlock("Alice to Bob", 1, genesisBlock)
-	Block2 := assignment01bca.NewBlock("Bob to Jack", 2, Block1)
-	Block3 := assignment01bca.NewBlock("Jack to Alice", 3, Block2)
+	genesisBlock := assignment01bca.NewBlock("Genesis", 798, 1, nil)
+	Block1 := assignment01bca.NewBlock("Alice to Bob", 234, 2, genesisBlock)
+	Block2 := assignment01bca.NewBlock("Bob to Jack", 121, 3, Block1)
+	Block3 := assignment01bca.NewBlock("Jack to Alice", 553, 4, Block2)
 
 	// Printing the blockchain
 	fmt.Printf("\n%s Blockchain %s\n\n", strings.Repeat("=", 33), strings.Repeat("=", 33))
@@ -32,3 +32,4 @@ func main() {
 	}
 	fmt.Println()
 }
+
